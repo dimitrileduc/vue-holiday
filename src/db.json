@@ -1,0 +1,9 @@
+{
+  "home": {
+    "headerHomeData": {
+      "sectionName": "headerHomeSection",
+      "siteTitle": "siteTitle",
+      "bookButton": "book"
+    }
+  }
+}
