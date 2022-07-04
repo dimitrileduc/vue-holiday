@@ -1,15 +1,14 @@
 <template>
     <div class="home">
-        <HomeHeader v-if="homeData" v-bind:dataProps="homeData" />
-        <HomeDetails v-if="detailsData" v-bind:dataProps="detailsData" />
-        <HomeDiscover v-if="discoverData" v-bind:dataProps="discoverData" />
-        <HomeSlideShow v-if="slideShowData" v-bind:dataProps="slideShowData" />
-        <HomeLocation v-if="locationData" v-bind:dataProps="locationData" />
+        <HomeHeader v-if="data" v-bind:dataProps="headerParsed" />
+        <HomeDetails v-if="data" v-bind:dataProps="detailsParsed" />
+        <HomeDiscover v-if="data" v-bind:dataProps="discoverParsed" />
+        <HomeSlideShow v-if="data" v-bind:dataProps="slideShowParsed" />
+        <HomeLocation v-if="data" v-bind:dataProps="locationParsed" />
     </div>
 </template>
 
 <script>
-import HomeService from "@/services/HomeServices";
 // @ is an alias to /src
 import HomeHeader from "@/components/HomeHeader.vue";
 import HomeDetails from "@/components/HomeDetails.vue";
@@ -26,27 +25,37 @@ export default {
         HomeSlideShow,
         HomeLocation,
     },
-    data() {
-        return {
-            homeData: null,
-            detailsData: null,
-            discoverData: null,
-            slideShowData: null,
-            locationData: null,
-        };
+    data() {},
+    props: {
+        data: {
+            type: Object,
+        },
     },
-    created() {
-        HomeService.getHomeData()
-            .then((response) => {
-                this.homeData = response.data.headerData;
-                this.detailsData = response.data.detailsData;
-                this.discoverData = response.data.discoverData;
-                this.slideShowData = response.data.slideShowData;
-                this.locationData = response.data.locationData;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+    computed: {
+        headerParsed: function () {
+            return this.data.headerData;
+        },
+        detailsParsed: function () {
+            return this.data.detailsData;
+        },
+        discoverParsed: function () {
+            return this.data.discoverData;
+        },
+        slideShowParsed: function () {
+            return this.data.slideShowData;
+        },
+        locationParsed: function () {
+            return this.data.locationData;
+        },
     },
 };
 </script>
+
+<style scoped>
+.home {
+    background-color: yellow;
+
+    width: 100vw;
+    height: 100vh;
+}
+</style>

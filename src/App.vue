@@ -1,14 +1,31 @@
 <template>
-    <NavBar />
+    <NavBar class="navBar" />
+    <router-view v-if="homeData" :data="homeData" />
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
+import HomeService from "@/services/HomeServices";
 
 export default {
     name: "App",
     components: {
         NavBar,
+    },
+    data() {
+        return {
+            homeData: null,
+        };
+    },
+    created() {
+        HomeService.getHomeData()
+            .then((response) => {
+                this.homeData = response.data;
+                console.log(this.homeData);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     },
 };
 </script>
@@ -22,8 +39,13 @@ export default {
     color: #2c3e50;
 }
 
-nav {
-    padding: 30px;
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.navBar {
 }
 
 nav a {
