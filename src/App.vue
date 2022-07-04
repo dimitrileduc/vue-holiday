@@ -1,5 +1,5 @@
 <template>
-    <NavBar class="navBar" />
+    <NavBar @wheel.prevent @touchmove.prevent @scroll.prevent class="navBar" />
     <router-view v-if="homeData" :data="homeData" />
 </template>
 
@@ -46,6 +46,7 @@ export default {
 }
 
 .navBar {
+    display: none;
 }
 
 nav a {

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="container">
         <h3>{{ dataProps.sectionName }} section</h3>
     </div>
 </template>
@@ -20,3 +20,12 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.container {
+    background-color: lightgray;
+
+    width: 100vw;
+    height: 100vh;
+}
+</style>

@@ -53,9 +53,8 @@ export default {
 
 <style scoped>
 .home {
-    background-color: yellow;
-
-    width: 100vw;
-    height: 100vh;
+    position: absolute;
+    top: 0;
+    z-index: 10;
 }
 </style>
