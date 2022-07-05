@@ -4,12 +4,17 @@
         <HomeDetails v-if="data" v-bind:dataProps="detailsParsed" />
         <HomeDiscover v-if="data" v-bind:dataProps="discoverParsed" />
         <HomeSlideShow v-if="data" v-bind:dataProps="slideShowParsed" />
-        <HomeLocation v-if="data" v-bind:dataProps="locationParsed" />
+        <HomeLocation
+            v-if="data"
+            v-bind:dataProps="locationParsed"
+            :windowTop="this.windowTop"
+        />
     </div>
 </template>
 
 <script>
 // @ is an alias to /src
+
 import HomeHeader from "@/components/HomeHeader.vue";
 import HomeDetails from "@/components/HomeDetails.vue";
 import HomeDiscover from "@/components/HomeDiscover.vue";
@@ -29,6 +34,9 @@ export default {
     props: {
         data: {
             type: Object,
+        },
+        windowTop: {
+            type: Number,
         },
     },
     computed: {
@@ -55,6 +63,5 @@ export default {
 .home {
     position: absolute;
     top: 0;
-    z-index: 10;
 }
 </style>

@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <div class="containerInterne" :style="image">
-            <h1 class="title">{{ dataProps.siteTitle }}</h1>
-            <p>{{ dataProps.bookButton }}</p>
-        </div>
+        <div class="containerInterne" :style="image"></div>
+        <h1 class="title">{{ dataProps.siteTitle }}</h1>
+
         <MenuButton />
+        <BookButton />
         <div class="borderTop"></div>
         <div class="borderRight"></div>
         <div class="borderBottom"></div>
@@ -15,11 +15,13 @@
 <script>
 import gsap from "gsap";
 import MenuButton from "@/components/ui/MenuButton.vue";
+import BookButton from "@/components/ui/BookButton.vue";
 
 export default {
     name: "HomeHeader",
     components: {
         MenuButton,
+        BookButton,
     },
     data() {
         return {
@@ -66,6 +68,7 @@ export default {
 .container {
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 .containerInterne {
@@ -76,12 +79,13 @@ export default {
     background-size: cover;
 
     overflow: hidden;
+    position: fixed;
 }
 .borderTop {
     background-color: white;
     width: 100vw;
     height: 0px;
-    position: absolute;
+    position: fixed;
     top: 0;
 }
 
@@ -116,12 +120,20 @@ export default {
     font-size: 96px;
     color: white;
     text-transform: uppercase;
-    text-align: left;
-    margin-left: 60px;
-    margin-bottom: 40px;
     font-family: "Lato", sans-serif;
     font-weight: 400;
     position: absolute;
-    bottom: 0;
+
+    text-align: left;
+    margin-left: 60px;
+
+    top: calc(100vh - 146px);
+    position: fixed;
+}
+@media only screen and (max-width: 600px) {
+    .title {
+        font-size: 48px;
+        width: 60vw;
+    }
 }
 </style>

@@ -1,23 +1,36 @@
 <template>
     <NavBar @wheel.prevent @touchmove.prevent @scroll.prevent class="navBar" />
-    <router-view v-if="homeData" :data="homeData" />
+
+    <router-view v-if="homeData" :data="homeData" :windowTop="windowTop" />
+    <FooterSection />
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
 import HomeService from "@/services/HomeServices";
+import FooterSection from "./components/FooterSection.vue";
 
 export default {
     name: "App",
     components: {
         NavBar,
+        FooterSection,
     },
     data() {
         return {
             homeData: null,
+            windowTop: 0,
         };
     },
+    methods: {
+        // eslint-disable-next-line no-unused-vars
+        handleScroll(event) {
+            console.log(window.scrollY);
+            this.windowTop = window.scrollY;
+        },
+    },
     created() {
+        window.addEventListener("scroll", this.handleScroll);
         HomeService.getHomeData()
             .then((response) => {
                 this.homeData = response.data;
@@ -26,6 +39,9 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
+    },
+    unmounted() {
+        window.removeEventListener("scroll", this.handleScroll);
     },
 };
 </script>

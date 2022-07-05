@@ -28,5 +28,8 @@ export default {
 
     width: 100vw;
     height: 100vh;
+    position: absolute;
+    top: 200vh;
+    z-index: 10;
 }
 </style>

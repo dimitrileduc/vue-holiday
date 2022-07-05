@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        <h3>{{ dataProps.sectionName }} section</h3>
+        <div class="containerInterne">
+            <h3>{{ dataProps.sectionName }} section {{ this.windowTop }}</h3>
+        </div>
     </div>
 </template>
 
@@ -17,6 +19,12 @@ export default {
                 return {message: "no data fetched"};
             },
         },
+        windowTop: {
+            type: Number,
+        },
+    },
+    created() {
+        console.log(this.windowTop);
     },
 };
 </script>
@@ -24,9 +32,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container {
-    background-color: yellow;
-
     width: 100vw;
     height: 100vh;
+    position: absolute;
+    top: 400vh;
+    z-index: 10;
+}
+.containerInterne {
+    background-color: white;
+    width: 100vw;
+    height: 80vh;
 }
 </style>

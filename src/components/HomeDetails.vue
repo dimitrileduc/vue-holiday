@@ -23,9 +23,12 @@ export default {
 
 <style scoped>
 .container {
-    background-color: lightgray;
+    background-color: white;
 
     width: 100vw;
     height: 100vh;
+    position: absolute;
+    top: 100vh;
+    z-index: 10;
 }
 </style>
