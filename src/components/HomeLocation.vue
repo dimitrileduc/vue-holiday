@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="containerInterne">
-            <h3>{{ dataProps.sectionName }} section {{ this.windowTop }}</h3>
+            <h3>{{ dataProps.sectionName }} section</h3>
         </div>
     </div>
 </template>
@@ -19,12 +19,6 @@ export default {
                 return {message: "no data fetched"};
             },
         },
-        windowTop: {
-            type: Number,
-        },
-    },
-    created() {
-        console.log(this.windowTop);
     },
 };
 </script>
@@ -41,6 +35,6 @@ export default {
 .containerInterne {
     background-color: white;
     width: 100vw;
-    height: 80vh;
+    height: 60vh;
 }
 </style>

@@ -5,4 +5,10 @@ import store from "./store";
 
 import "./assets/css/main.css";
 
-createApp(App).use(store).use(router).mount("#app");
+import mitt from "mitt";
+
+const emitter = mitt();
+const app = createApp(App);
+
+app.config.globalProperties.emitter = emitter;
+app.use(store).use(router).mount("#app");

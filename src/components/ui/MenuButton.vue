@@ -1,10 +1,22 @@
 <template>
     <div class="container">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
+        <div v-on:click="emitOpen" class="" button>
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
     </div>
 </template>
+
+<script>
+export default {
+    methods: {
+        emitOpen() {
+            this.emitter.emit("emitOpenMenu", {eventContent: "open"});
+        },
+    },
+};
+</script>
 
 <style scoped>
 .container {
@@ -15,6 +27,11 @@
     margin-left: 60px;
     margin-top: 60px;
     text-align: left;
+    z-index: 200;
+}
+
+.button {
+    cursor: pointer;
 }
 
 .line1 {

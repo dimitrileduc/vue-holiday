@@ -9,7 +9,9 @@ export default {
     name: "FooterSection",
     components: {},
     data() {
-        return {};
+        return {
+            shouldHideFooter: false,
+        };
     },
 };
 </script>
@@ -20,7 +22,7 @@ export default {
 }
 .container {
     width: 100vw;
-    height: 20vh;
+    height: 40vh;
 
     color: black;
 

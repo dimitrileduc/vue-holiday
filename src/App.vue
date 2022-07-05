@@ -1,8 +1,19 @@
 <template>
-    <NavBar @wheel.prevent @touchmove.prevent @scroll.prevent class="navBar" />
+    <NavBar
+        @wheel.prevent
+        @touchmove.prevent
+        @scroll.prevent
+        class="navBar"
+        :isNavVisible="isNavVisible"
+    />
 
-    <router-view v-if="homeData" :data="homeData" :windowTop="windowTop" />
-    <FooterSection />
+    <router-view
+        v-if="homeData"
+        :data="homeData"
+        @updateparent="updatefooter"
+    />
+
+    <FooterSection v-if="isFooterVisible" />
 </template>
 
 <script>
@@ -16,21 +27,20 @@ export default {
         NavBar,
         FooterSection,
     },
+
     data() {
         return {
             homeData: null,
-            windowTop: 0,
+            isNavVisible: false,
+            isFooterVisible: false,
         };
     },
     methods: {
-        // eslint-disable-next-line no-unused-vars
-        handleScroll(event) {
-            console.log(window.scrollY);
-            this.windowTop = window.scrollY;
+        updatefooter(bool) {
+            this.isFooterVisible = bool;
         },
     },
     created() {
-        window.addEventListener("scroll", this.handleScroll);
         HomeService.getHomeData()
             .then((response) => {
                 this.homeData = response.data;
@@ -39,9 +49,16 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-    },
-    unmounted() {
-        window.removeEventListener("scroll", this.handleScroll);
+        this.emitter.on("emitOpenMenu", () => {
+            console.log("open nav");
+
+            this.isNavVisible = true;
+        });
+        this.emitter.on("emitCloseMenu", () => {
+            console.log("close nav");
+
+            this.isNavVisible = false;
+        });
     },
 };
 </script>
@@ -62,7 +79,6 @@ export default {
 }
 
 .navBar {
-    display: none;
 }
 
 nav a {

@@ -4,11 +4,7 @@
         <HomeDetails v-if="data" v-bind:dataProps="detailsParsed" />
         <HomeDiscover v-if="data" v-bind:dataProps="discoverParsed" />
         <HomeSlideShow v-if="data" v-bind:dataProps="slideShowParsed" />
-        <HomeLocation
-            v-if="data"
-            v-bind:dataProps="locationParsed"
-            :windowTop="this.windowTop"
-        />
+        <HomeLocation v-if="data" v-bind:dataProps="locationParsed" />
     </div>
 </template>
 
@@ -30,13 +26,14 @@ export default {
         HomeSlideShow,
         HomeLocation,
     },
-    data() {},
+    data() {
+        return {
+            windowTop: 0,
+        };
+    },
     props: {
         data: {
             type: Object,
-        },
-        windowTop: {
-            type: Number,
         },
     },
     computed: {
@@ -55,6 +52,28 @@ export default {
         locationParsed: function () {
             return this.data.locationData;
         },
+    },
+    methods: {
+        // eslint-disable-next-line no-unused-vars
+        handleScroll(event) {
+            this.windowTop = window.scrollY;
+
+            if (this.windowTop > window.innerHeight) {
+                this.$emit("updateparent", true);
+            } else {
+                this.$emit("updateparent", false);
+            }
+        },
+    },
+    created() {
+        window.addEventListener("scroll", this.handleScroll);
+        // eslint-disable-next-line no-undef
+    },
+    mounted() {
+        this.$emit("updateparent", false);
+    },
+    unmounted() {
+        window.removeEventListener("scroll", this.handleScroll);
     },
 };
 </script>
