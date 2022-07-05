@@ -23,7 +23,7 @@ export default {
             let tl = gsap.timeline();
             tl.to(".containerNav", {
                 left: 0,
-                duration: 1,
+                duration: 0.75,
                 ease: "expo.in",
             });
         },
@@ -33,7 +33,7 @@ export default {
             tl2.to(".containerNav", {
                 left: "-100vw",
                 duration: 1,
-                ease: "expo.in",
+                ease: "expo.out",
             });
         },
 

@@ -78,7 +78,6 @@ export default {
     height: 100vh;
     background-size: cover;
 
-    overflow: hidden;
     position: fixed;
 }
 .borderTop {

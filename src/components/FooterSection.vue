@@ -29,5 +29,7 @@ export default {
     background-color: grey;
     position: fixed;
     bottom: 0;
+    font-size: 112px;
+    color: white;
 }
 </style>
