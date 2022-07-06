@@ -1,14 +1,39 @@
 <template>
     <div class="container">
         <h3>{{ dataProps.sectionName }} section</h3>
+        <Waypoint @change="onChange" :active="isScrolling"></Waypoint>
     </div>
 </template>
 
 <script>
+import {Waypoint} from "vue-waypoint";
 export default {
     name: "HomeSlideShow",
+    setup() {
+        const onChange = (waypointState) => {
+            // Going can be:
+            // IN
+            // OUT
+            console.log(waypointState.going);
+
+            // Direction can be:
+            // UP
+            // DOWN
+            // LEFT
+            // RIGHT
+            // console.log(waypointState.direction);
+        };
+
+        return {onChange};
+    },
     data() {
-        return {};
+        return {
+            isScrolling: false,
+            scrollTimeout: null,
+        };
+    },
+    components: {
+        Waypoint,
     },
     props: {
         dataProps: {
@@ -17,6 +42,23 @@ export default {
                 return {message: "no data fetched"};
             },
         },
+    },
+    methods: {
+        test() {
+            console.log("scroll");
+
+            const vm = this;
+
+            vm.isScrolling = true; //as soon as scroll event is dispatched, set isScrolling as true
+            clearTimeout(vm.scrollTimeout); // clea
+            vm.scrollTimeout = setTimeout(function () {
+                console.log("endscroll");
+                vm.isScrolling = false;
+            }, 300); //300ms after the last event isScrolling will be set false.
+        },
+    },
+    mounted() {
+        document.addEventListener("scroll", this.test);
     },
 };
 </script>

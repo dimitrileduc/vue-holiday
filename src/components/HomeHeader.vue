@@ -14,6 +14,7 @@
 
 <script>
 import gsap from "gsap";
+
 import MenuButton from "@/components/ui/MenuButton.vue";
 import BookButton from "@/components/ui/BookButton.vue";
 
@@ -23,6 +24,7 @@ export default {
         MenuButton,
         BookButton,
     },
+
     data() {
         return {
             image: {
@@ -31,6 +33,7 @@ export default {
             },
         };
     },
+
     props: {
         dataProps: {
             type: Object,

@@ -2488,7 +2488,7 @@ core-js-compat@^3.21.0, core-js-compat@^3.22.1, core-js-compat@^3.8.3:
     browserslist "^4.21.0"
     semver "7.0.0"
 
-core-js@^3.8.3:
+core-js@^3.15.0, core-js@^3.8.3:
   version "3.23.3"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.23.3.tgz#3b977612b15da6da0c9cc4aec487e8d24f371112"
   integrity sha512-oAKwkj9xcWNBAvGbT//WiCdOMpb9XQG92/Fe3ABFM/R16BsHgePG00mFOgKf7IsCtfj8tA1kHtf/VwErhriz5Q==
@@ -5918,7 +5918,15 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
 
-vue@^3.2.13:
+vue-waypoint@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/vue-waypoint/-/vue-waypoint-4.2.1.tgz#9c47250d84dbcf719da3b8799b76aea153689be1"
+  integrity sha512-/ieRv3RpeLz+ArHbh23SWGgkTdBklXr67lkdXKigMY6h14cLM7zHf4whXxNgIeaxfijZojDTHNadtHbNVavICA==
+  dependencies:
+    core-js "^3.15.0"
+    vue "^3.1.1"
+
+vue@^3.1.1, vue@^3.2.13:
   version "3.2.37"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.2.37.tgz#da220ccb618d78579d25b06c7c21498ca4e5452e"
   integrity sha512-bOKEZxrm8Eh+fveCqS1/NkG/n6aMidsI6hahas7pa0w/l7jkbssJVsRhVDs07IdDq7h9KHswZOgItnwJAgtVtQ==
