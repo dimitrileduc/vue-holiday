@@ -2,6 +2,7 @@
     <div class="home">
         <HomeHeader v-if="data" v-bind:dataProps="headerParsed" />
         <HomeDetails v-if="data" v-bind:dataProps="detailsParsed" />
+
         <HomeDiscover v-if="data" v-bind:dataProps="discoverParsed" />
 
         <HomeSlideShow v-if="data" v-bind:dataProps="slideShowParsed" />
@@ -21,6 +22,7 @@ import HomeLocation from "@/components/HomeLocation.vue";
 
 export default {
     name: "HomeView",
+
     components: {
         HomeHeader,
         HomeDetails,
@@ -32,6 +34,8 @@ export default {
     data() {
         return {
             windowTop: 0,
+            isScrolling: false,
+            scrollTimeout: null,
         };
     },
     props: {

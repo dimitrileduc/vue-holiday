@@ -41,6 +41,7 @@ export default {
         },
     },
     created() {
+        document.body.style.overflowX = "hidden";
         HomeService.getHomeData()
             .then((response) => {
                 this.homeData = response.data;

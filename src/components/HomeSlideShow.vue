@@ -1,40 +1,19 @@
 <template>
     <div class="container">
-        <h3>{{ dataProps.sectionName }} section</h3>
-        <Waypoint @change="onChange" :active="isScrolling"></Waypoint>
+        <div class="containerParentSlider">
+            <div class="containerEnfantSlider"></div>
+        </div>
     </div>
 </template>
 
 <script>
-import {Waypoint} from "vue-waypoint";
 export default {
     name: "HomeSlideShow",
-    setup() {
-        const onChange = (waypointState) => {
-            // Going can be:
-            // IN
-            // OUT
-            console.log(waypointState.going);
 
-            // Direction can be:
-            // UP
-            // DOWN
-            // LEFT
-            // RIGHT
-            // console.log(waypointState.direction);
-        };
-
-        return {onChange};
-    },
     data() {
-        return {
-            isScrolling: false,
-            scrollTimeout: null,
-        };
+        return {};
     },
-    components: {
-        Waypoint,
-    },
+    components: {},
     props: {
         dataProps: {
             type: Object,
@@ -43,23 +22,8 @@ export default {
             },
         },
     },
-    methods: {
-        test() {
-            console.log("scroll");
-
-            const vm = this;
-
-            vm.isScrolling = true; //as soon as scroll event is dispatched, set isScrolling as true
-            clearTimeout(vm.scrollTimeout); // clea
-            vm.scrollTimeout = setTimeout(function () {
-                console.log("endscroll");
-                vm.isScrolling = false;
-            }, 300); //300ms after the last event isScrolling will be set false.
-        },
-    },
-    mounted() {
-        document.addEventListener("scroll", this.test);
-    },
+    methods: {},
+    mounted() {},
 };
 </script>
 
@@ -73,5 +37,19 @@ export default {
     position: absolute;
     top: 300vh;
     z-index: 10;
+}
+
+.containerParentSlider {
+    position: absolute;
+    bottom: 0;
+    width: 90vw;
+    height: 100vh;
+    overflow-x: scroll;
+    border: solid 1px green;
+}
+.containerEnfantSlider {
+    width: 300vw;
+    height: 100vh;
+    border: solid 1px red;
 }
 </style>
