@@ -78,6 +78,9 @@ export default {
     },
     mounted() {
         this.$emit("updateparent", false);
+        this.$nextTick(() => {
+            this.emitter.emit("createScroll", {eventContent: "close"});
+        });
     },
     unmounted() {
         window.removeEventListener("scroll", this.handleScroll);

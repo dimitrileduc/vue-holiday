@@ -19,7 +19,7 @@ export default {
             // OUT
             if (waypointState.going === "IN") {
                 if (waypointState.direction === "UP") {
-                    console.log("in point of slider section - direction UP");
+                    //console.log("in point of slider section - direction UP");
                 }
             }
             //console.log(waypointState.going);

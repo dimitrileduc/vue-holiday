@@ -13,7 +13,10 @@
 </template>
 
 <script>
-import gsap from "gsap";
+import gsap from "gsap-trial";
+import ScrollTrigger from "gsap-trial/ScrollTrigger";
+import ScrollSmoother from "gsap-trial/ScrollSmoother";
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 import MenuButton from "@/components/ui/MenuButton.vue";
 import BookButton from "@/components/ui/BookButton.vue";
@@ -62,6 +65,22 @@ export default {
             "-=4",
         );
         tl.to(".borderLeft", {width: 20, duration: 2, ease: "expo.out"}, "-=4");
+
+        ScrollTrigger.create({
+            trigger: ".container",
+            pin: ".containerInterne",
+            start: "top top",
+        });
+        ScrollTrigger.create({
+            trigger: ".container",
+            pin: ".borderTop",
+            start: "top top",
+        });
+        ScrollTrigger.create({
+            trigger: ".container",
+            pin: ".title",
+            start: "top top",
+        });
     },
 };
 </script>
@@ -87,7 +106,7 @@ export default {
     background-color: white;
     width: 100vw;
     height: 0px;
-    position: fixed;
+    position: absolute;
     top: 0;
 }
 
@@ -130,7 +149,6 @@ export default {
     margin-left: 60px;
 
     top: calc(100vh - 146px);
-    position: fixed;
 }
 @media only screen and (max-width: 600px) {
     .title {
