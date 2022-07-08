@@ -24,7 +24,7 @@ export default {
     width: 100vw;
     height: 30vh;
     background-color: grey;
-    z-index: 1000;
+    z-index: 500;
     margin-top: 0vh;
 }
 .container {
