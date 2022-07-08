@@ -8,21 +8,15 @@
             :isNavVisible="isNavVisible"
         />
         <div id="smooth-content" class="smooth-content">
-            <router-view
-                v-if="homeData"
-                :data="homeData"
-                @updateparent="updatefooter"
-            />
+            <router-view v-if="homeData" :data="homeData" />
+            <FooterSection />
         </div>
-
-        <FooterSection v-if="isFooterVisible" />
     </div>
 </template>
 
 <script>
 import NavBar from "@/components/NavBar.vue";
 import HomeService from "@/services/HomeServices";
-import FooterSection from "./components/FooterSection.vue";
 
 import gsap from "gsap-trial";
 import ScrollTrigger from "gsap-trial/ScrollTrigger";
@@ -33,21 +27,16 @@ export default {
     name: "App",
     components: {
         NavBar,
-        FooterSection,
     },
 
     data() {
         return {
             homeData: null,
             isNavVisible: false,
-            isFooterVisible: false,
+            isFooterVisible: true,
         };
     },
-    methods: {
-        updatefooter(bool) {
-            this.isFooterVisible = bool;
-        },
-    },
+    methods: {},
     created() {
         document.body.style.overflowX = "hidden";
         HomeService.getHomeData()
@@ -90,6 +79,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
+    background-color: black;
 }
 
 * {
@@ -99,7 +89,7 @@ export default {
 }
 
 .smooth-content {
-    height: 500vh;
+    height: calc(700vh);
 }
 
 .navBar {

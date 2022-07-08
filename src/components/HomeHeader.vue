@@ -4,7 +4,7 @@
         <h1 class="title">{{ dataProps.siteTitle }}</h1>
 
         <MenuButton />
-        <BookButton />
+        <BookButton class="button" />
         <div class="borderTop"></div>
         <div class="borderRight"></div>
         <div class="borderBottom"></div>
@@ -73,7 +73,7 @@ export default {
         });
         ScrollTrigger.create({
             trigger: ".container",
-            pin: ".borderTop",
+            pin: ".button",
             start: "top top",
         });
         ScrollTrigger.create({

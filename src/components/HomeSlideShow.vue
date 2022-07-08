@@ -1,36 +1,52 @@
 <template>
-    <div class="container">
-        <Waypoint @change="onChange" :active="isScrolling">
-            <div
-                v-dragscroll.x
-                id="containerParent"
-                class="containerParentSlider"
-            >
-                <div class="containerEnfantSlider"></div>
+    <div class="container"></div>
+    <section class="section portfolio">
+        <h2 class="portfolio_title text-stroke parallax">Portfolio</h2>
+        <div class="panel">
+            <div class="panel_item">
+                <img
+                    class="panel_img firstAn"
+                    src="https://via.placeholder.com/800x600.jpg"
+                />
             </div>
-        </Waypoint>
-    </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel_item">
+                <img
+                    class="panel_img firstAn"
+                    src="https://via.placeholder.com/800x600.jpg"
+                />
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel_item">
+                <img
+                    class="panel_img secondAn"
+                    src="https://via.placeholder.com/800x600.jpg"
+                />
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel_item">
+                <img
+                    class="panel_img secondAn"
+                    src="https://via.placeholder.com/800x600.jpg"
+                />
+            </div>
+        </div>
+    </section>
 </template>
 
 <script>
-import {Waypoint} from "vue-waypoint";
+import gsap from "gsap-trial";
+import ScrollTrigger from "gsap-trial/ScrollTrigger";
+import ScrollSmoother from "gsap-trial/ScrollSmoother";
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default {
     name: "HomeSlideShow",
-    setup() {
-        var observer = new IntersectionObserver(
-            function (entries) {
-                console.log(entries[0]);
-                if (entries[0].isIntersecting === true)
-                    console.log("Element is fully visible in screen");
-                this.isFullVisible = true;
-                //document.body.style.overflowY = "hidden";
-            },
-            {threshold: [1]},
-        );
-
-        return {observer};
-    },
 
     data() {
         return {
@@ -40,7 +56,7 @@ export default {
             isFullVisible: false,
         };
     },
-    components: {Waypoint},
+    components: {},
     props: {
         dataProps: {
             type: Object,
@@ -49,29 +65,60 @@ export default {
             },
         },
     },
-    methods: {
-        test() {
-            const vm = this;
-
-            vm.isScrolling = true; //as soon as scroll event is dispatched, set isScrolling as true
-            clearTimeout(vm.scrollTimeout); // clea
-            vm.scrollTimeout = setTimeout(function () {
-                vm.isScrolling = false;
-            }, 300); //300ms after the last event isScrolling will be set false.
-        },
-        onChange(waypointState) {
-            console.log(waypointState.going);
-            console.log(waypointState.direction);
-        },
-    },
-    watch: {
-        isTopVisible: function (val) {
-            console.log("is top visible", val);
-        },
-    },
+    methods: {},
+    watch: {},
     mounted() {
-        document.addEventListener("scroll", this.test);
-        this.observer.observe(document.querySelector("#containerParent"));
+        let container = document.querySelector(".portfolio");
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                pin: true,
+                scrub: true,
+                anticipatePin: 1,
+                trigger: container,
+                start: "top top",
+
+                end: () => "+=200%",
+
+                onUpdate: (self) =>
+                    console.log("progress: " + self.progress.toFixed(3)),
+            },
+            defaults: {ease: "none", duration: 5},
+        });
+
+        tl.to(
+            ".panel",
+            {
+                x: () =>
+                    -(
+                        container.scrollWidth -
+                        document.documentElement.clientWidth
+                    ),
+            },
+            0,
+        ).from(
+            ".secondAn",
+            {
+                opacity: 0,
+                scale: 0.5,
+                duration: 0.2,
+                stagger: {
+                    amount: 0.8,
+                },
+            },
+            0,
+        );
+
+        gsap.from(".firstAn", {
+            duration: 1,
+            opacity: 0,
+            scale: 0.5,
+            scrollTrigger: {
+                trigger: container,
+                start: "top 90%",
+                end: "bottom 10%",
+                toggleActions: "play none none reverse",
+            },
+        });
     },
 };
 </script>
@@ -80,27 +127,90 @@ export default {
 <style scoped>
 .container {
     background-color: lightgray;
+}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    position: relative;
+    letter-spacing: 0.04em;
+}
+body {
+    font-family: "Montserrat", sans-serif;
 
-    width: 100vw;
+    overflow-x: hidden;
+    background-color: aqua;
+}
+.spacer {
+    position: absolute;
     height: 100vh;
-    position: absolute;
-    top: 300vh;
-    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aquamarine;
 }
+h1 {
+    font-size: 3rem;
+    color: #000;
+}
+.section {
+    height: auto;
+    width: 100%;
 
-.containerParentSlider {
-    position: absolute;
-    bottom: 0;
-    width: 90vw;
-    height: 90vh;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    border: solid 1px green;
+    padding: 0;
+    overflow-x: hidden;
 }
-.containerEnfantSlider {
-    width: 300vw;
-    height: 90vh;
-    border: solid 1px red;
-    background-color: antiquewhite;
+.portfolio {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: #1f242d;
+    overflow: hidden;
+    z-index: 500;
+}
+.portfolio_title {
+    position: absolute;
+    top: 0;
+    left: -15rem;
+    font-size: 24rem;
+    letter-spacing: 0;
+    -webkit-text-stroke-color: #343a42;
+    display: inline-block;
+}
+.text-stroke {
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #343a42;
+}
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    aling-content: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.panel {
+    display: flex;
+    flex: 0 0 50%;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    height: 100%;
+    padding: 10rem 7rem 2rem 7rem;
+    background-color: transparent;
+    overflow: hidden;
+}
+.panel_item {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+.panel_img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
 }
 </style>

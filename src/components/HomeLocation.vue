@@ -1,45 +1,21 @@
 <template>
     <div class="container">
-        <Waypoint @change="onChange" :active="isScrolling">
-            <div class="containerInterne">
-                <h3>{{ dataProps.sectionName }} section</h3>
-            </div>
-        </Waypoint>
+        <div class="containerInterne">
+            <h3>{{ dataProps.sectionName }} section</h3>
+        </div>
     </div>
 </template>
 
 <script>
-import {Waypoint} from "vue-waypoint";
+import gsap from "gsap-trial";
+import ScrollTrigger from "gsap-trial/ScrollTrigger";
+import ScrollSmoother from "gsap-trial/ScrollSmoother";
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export default {
     name: "HomeLocation",
-    setup() {
-        const onChange = (waypointState) => {
-            // Going can be:
-            // IN
-            // OUT
-            if (waypointState.going === "IN") {
-                if (waypointState.direction === "UP") {
-                    //console.log("in point of slider section - direction UP");
-                }
-            }
-            //console.log(waypointState.going);
 
-            // Direction can be:
-            // UP
-            // DOWN
-            // LEFT
-            // RIGHT
-            //console.log(waypointState.direction);
-        };
-
-        return {onChange};
-    },
-    components: {
-        Waypoint,
-    },
-    data() {
-        return {isScrolling: false, scrollTimeout: null};
-    },
+    components: {},
+    data() {},
 
     props: {
         dataProps: {
@@ -49,20 +25,8 @@ export default {
             },
         },
     },
-    methods: {
-        test() {
-            const vm = this;
-
-            vm.isScrolling = true; //as soon as scroll event is dispatched, set isScrolling as true
-            clearTimeout(vm.scrollTimeout); // clea
-            vm.scrollTimeout = setTimeout(function () {
-                vm.isScrolling = false;
-            }, 300); //300ms after the last event isScrolling will be set false.
-        },
-    },
-    mounted() {
-        document.addEventListener("scroll", this.test);
-    },
+    methods: {},
+    mounted() {},
 };
 </script>
 
@@ -70,14 +34,15 @@ export default {
 <style scoped>
 .container {
     width: 100vw;
-    height: 100vh;
-    position: absolute;
-    top: 400vh;
+
+    position: relative;
+
     z-index: 10;
+    background: none;
 }
 .containerInterne {
-    background-color: white;
+    background-color: rgb(40, 53, 243);
+    height: 70vh;
     width: 100vw;
-    height: 60vh;
 }
 </style>
