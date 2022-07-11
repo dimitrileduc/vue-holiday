@@ -17,9 +17,15 @@
     "mitt": "^3.0.0",
     "vue": "^3.2.13",
     "vue-dragscroll": "^3.0.1",
+    "vue-lazytube": "^1.1.1",
     "vue-observe-visibility": "^1.0.0",
+    "vue-plyr": "^7.0.0",
     "vue-router": "^4.0.3",
+    "vue-vimeo-player": "^1.1.2",
     "vue-waypoint": "^4.2.1",
+    "vue-youtube": "^1.4.0",
+    "vue3-player-video": "^1.2.5",
+    "vue3-youtube": "^0.1.9",
     "vuex": "^4.0.0"
   },
   "devDependencies": {

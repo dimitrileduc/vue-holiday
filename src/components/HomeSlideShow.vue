@@ -1,13 +1,15 @@
 <template>
     <div class="container"></div>
     <section class="section portfolio">
-        <h2 class="portfolio_title text-stroke parallax">Portfolio</h2>
+        <h2 class="portfolio_title text-stroke parallax"></h2>
         <div class="panel">
             <div class="panel_item">
                 <img
                     class="panel_img firstAn"
-                    src="https://via.placeholder.com/800x600.jpg"
+                    :src="livingroomurl"
+                    alt="image1"
                 />
+                <div class="imgtitle">{{ livingroomtitle }}</div>
             </div>
         </div>
 
@@ -15,8 +17,10 @@
             <div class="panel_item">
                 <img
                     class="panel_img firstAn"
-                    src="https://via.placeholder.com/800x600.jpg"
+                    :src="dinnerroomurl"
+                    alt="image2"
                 />
+                <div class="imgtitle">{{ dinnerroomtitle }}</div>
             </div>
         </div>
 
@@ -24,16 +28,20 @@
             <div class="panel_item">
                 <img
                     class="panel_img secondAn"
-                    src="https://via.placeholder.com/800x600.jpg"
+                    :src="bedroomrurl"
+                    alt="image3"
                 />
+                <div class="imgtitle">{{ bedroomtitle }}</div>
             </div>
         </div>
         <div class="panel">
             <div class="panel_item">
                 <img
                     class="panel_img secondAn"
-                    src="https://via.placeholder.com/800x600.jpg"
+                    :src="outdoorurl"
+                    alt="image4"
                 />
+                <div class="imgtitle">{{ outdoortitle }}</div>
             </div>
         </div>
     </section>
@@ -54,6 +62,18 @@ export default {
             scrollTimeout: null,
             isTopVisible: null,
             isFullVisible: false,
+            livingroomtitle: "living",
+            livingroomurl:
+                "https://www.ministryofvillas.com/wp-content/uploads/2013/09/bali-villazelie-43.jpg",
+            dinnerroomtitle: "dinner room",
+            dinnerroomurl:
+                "https://www.ministryofvillas.com/wp-content/uploads/2013/09/bali-villazelie-27.jpg",
+            bedroomtitle: "bedroom",
+            bedroomrurl:
+                "https://www.ministryofvillas.com/wp-content/uploads/2013/09/bali-villazelie-31.jpg",
+            outdoortitle: "garden",
+            outdoorurl:
+                "https://www.ministryofvillas.com/wp-content/uploads/2013/09/bali-villazelie-47.jpg",
         };
     },
     components: {},
@@ -165,9 +185,14 @@ h1 {
     height: 100vh;
     display: flex;
     flex-wrap: nowrap;
-    background-color: #1f242d;
+    background-color: white;
+
     overflow: hidden;
     z-index: 500;
+
+    padding-top: 40px;
+    padding-bottom: 20px;
+    padding-left: 20px;
 }
 .portfolio_title {
     position: absolute;
@@ -193,13 +218,16 @@ h1 {
 }
 .panel {
     display: flex;
-    flex: 0 0 50%;
+    flex: 0 0 92%;
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
     justify-content: center;
+
     height: 100%;
-    padding: 10rem 7rem 2rem 7rem;
+
+    padding-right: 20px;
+
     background-color: transparent;
     overflow: hidden;
 }
@@ -212,5 +240,27 @@ h1 {
     width: 100%;
     height: 100%;
     margin: 0 auto;
+}
+
+.imgtitle {
+    z-index: 10;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    text-align: left;
+    padding-top: 20px;
+    padding-left: 20px;
+
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 96px;
+    line-height: 115px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    color: #ffffff;
 }
 </style>

@@ -1,9 +1,16 @@
 <template>
-    <div class="gsap">
-        <div class="container">
-            <div class="containerInterne">
-                <h3>{{ dataProps.sectionName }} section</h3>
-            </div>
+    <div class="ad">
+        <div class="mask">
+            <vueVimeoPlayer
+                ref="player"
+                :video-id="videoID"
+                @ready="onReady"
+                class="bus"
+                :player-width="width"
+                :player-height="height"
+                :options="options"
+            />
+            -
         </div>
     </div>
 </template>
@@ -12,12 +19,30 @@
 import gsap from "gsap-trial";
 import ScrollTrigger from "gsap-trial/ScrollTrigger";
 import ScrollSmoother from "gsap-trial/ScrollSmoother";
+import {vueVimeoPlayer} from "vue-vimeo-player";
+
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export default {
     name: "HomeDiscover",
 
-    components: {},
-    data() {},
+    components: {vueVimeoPlayer},
+    data() {
+        return {
+            videoID: "92893405",
+            width: window.innerWidth,
+            height: window.innerHeight,
+            options: {
+                muted: true,
+                autoplay: true,
+                height: window.innerHeight,
+                width: window.innerWidth,
+                responsive: true,
+                controls: false,
+                playsinline: false,
+            },
+            playerReady: false,
+        };
+    },
     props: {
         dataProps: {
             type: Object,
@@ -26,28 +51,72 @@ export default {
             },
         },
     },
-    methods: {},
+    methods: {
+        onReady() {
+            this.playerReady = true;
+        },
+        play() {
+            this.$refs.player.play();
+        },
+        pause() {
+            this.$refs.player.pause();
+        },
+    },
+    computed: {},
     mounted() {
-        ScrollTrigger.create({
-            trigger: ".gsap",
-            start: "top top",
-            pin: true,
-            pinSpacing: false,
+        let container = document.querySelector(".ad");
+        let tl = gsap.timeline({
+            scrollTrigger: {
+                pin: true,
+                scrub: true,
+                anticipatePin: 1,
+                trigger: container,
+                start: "top top",
+
+                onUpdate: (self) =>
+                    console.log("progress: " + self.progress.toFixed(3)),
+            },
+            defaults: {ease: "none", duration: 5},
         });
+        tl.from(".bus", {scale: 2})
+            .to(
+                ".mask",
+                {clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"},
+                0,
+            )
+            .to(".mask", {scale: 0.95, duration: 1});
     },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container {
-    background-color: transparent;
+.ad {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    /* shrink for video */
+    /* transform-origin:0 0;
+	transform:scale(0.7); */
+}
 
+.mask {
+    width: 100vw;
+    height: 100vh;
+    background: salmon;
+    overflow: hidden;
+    clip-path: polygon(30% 30%, 70% 30%, 70% 70%, 30% 70%);
+}
+
+.bus {
     width: 100vw;
     height: 100vh;
 }
-.containerInterne {
-    background-color: rgb(157, 52, 52);
+
+.vm {
     width: 100vw;
     height: 100vh;
 }
