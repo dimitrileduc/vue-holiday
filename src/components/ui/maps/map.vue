@@ -17,13 +17,16 @@ export default {
 
         new mapboxgl.Map({
             container: "mapContainer",
-            style: "mapbox://styles/mapbox/streets-v11",
+            style: "mapbox://styles/mapbox/light-v10",
             center: [103.811279, 1.345399],
             zoom: 12,
             maxBounds: [
                 [103.6, 1.1704753],
                 [104.1, 1.4754753],
             ],
+            scrollZoom: false,
+            boxZoom: false,
+            doubleClickZoom: false,
         });
     },
 };

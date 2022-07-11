@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="containerInterne">
-            <h3>{{ dataProps.sectionName }} section</h3>
+            <div class="title">{{ dataProps.sectionName }}</div>
             <mapVue />
         </div>
     </div>
@@ -45,10 +45,31 @@ export default {
 
     z-index: 10;
     background: none;
+    margin-bottom: 40px;
 }
 .containerInterne {
-    background-color: rgb(40, 53, 243);
+    background-color: white;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
     height: 70vh;
     width: 100vw;
+}
+
+.title {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 58px;
+    text-align: left;
+    /* identical to box height */
+
+    letter-spacing: 0.05em;
+
+    color: #000000;
+    padding-bottom: 20px;
+    text-transform: uppercase;
 }
 </style>
