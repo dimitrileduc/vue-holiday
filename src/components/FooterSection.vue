@@ -24,6 +24,7 @@
 
 <script>
 import gsap from "gsap-trial";
+
 import ScrollTrigger from "gsap-trial/ScrollTrigger";
 import ScrollSmoother from "gsap-trial/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
@@ -61,19 +62,16 @@ export default {
 
     z-index: 500;
 
-    position: absolute;
-    bottom: 0;
     margin-bottom: 60px;
 }
 .container {
-    margin-top: auto;
+    margin-top: 40px;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-auto-flow: row;
     grid-template-areas: "button menu1 menu2";
-    border: 1px red dashed;
 
     margin-left: 40px;
     margin-bottom: 40px;

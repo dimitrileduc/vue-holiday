@@ -2,19 +2,25 @@
     <div class="container">
         <div class="containerInterne">
             <h3>{{ dataProps.sectionName }} section</h3>
+            <mapVue />
         </div>
     </div>
 </template>
 
 <script>
 import gsap from "gsap-trial";
+
+import mapVue from "./ui/maps/map.vue";
+
 import ScrollTrigger from "gsap-trial/ScrollTrigger";
 import ScrollSmoother from "gsap-trial/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export default {
     name: "HomeLocation",
 
-    components: {},
+    components: {
+        mapVue,
+    },
     data() {},
 
     props: {
