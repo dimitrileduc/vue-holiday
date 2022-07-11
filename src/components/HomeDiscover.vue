@@ -12,6 +12,7 @@
             />
             -
         </div>
+        <div class="title">discover</div>
     </div>
 </template>
 
@@ -119,5 +120,20 @@ export default {
 .vm {
     width: 100vw;
     height: 100vh;
+}
+
+.title {
+    position: absolute;
+
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 77px;
+    letter-spacing: 0.05em;
+
+    color: #ffffff;
+    z-index: 100;
+    text-transform: uppercase;
 }
 </style>
