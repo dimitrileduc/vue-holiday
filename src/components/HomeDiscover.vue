@@ -1,6 +1,6 @@
 <template>
     <div class="ad">
-        <div class="mask"><mapVue /></div>
+        <div class="mask"><mapVue class="bus" /></div>
     </div>
 </template>
 
@@ -86,7 +86,7 @@ export default {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-color: white;
+    background-color: #02281c;
     /* shrink for video */
     /* transform-origin:0 0;
 	transform:scale(0.7); */
