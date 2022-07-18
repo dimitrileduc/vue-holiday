@@ -1,18 +1,6 @@
 <template>
     <div class="ad">
-        <div class="mask">
-            <vueVimeoPlayer
-                ref="player"
-                :video-id="videoID"
-                @ready="onReady"
-                class="bus"
-                :player-width="width"
-                :player-height="height"
-                :options="options"
-            />
-            -
-        </div>
-        <div class="title">discover</div>
+        <div class="mask"><mapVue /></div>
     </div>
 </template>
 
@@ -20,13 +8,13 @@
 import gsap from "gsap-trial";
 import ScrollTrigger from "gsap-trial/ScrollTrigger";
 import ScrollSmoother from "gsap-trial/ScrollSmoother";
-import {vueVimeoPlayer} from "vue-vimeo-player";
+import mapVue from "./ui/maps/map.vue";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export default {
     name: "HomeDiscover",
 
-    components: {vueVimeoPlayer},
+    components: {mapVue},
     data() {
         return {
             videoID: "92893405",

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="title">{{ title }}</div>
+        <div class="titleDetails">{{ title }}</div>
         <div class="detailstTitle">Areas</div>
         <div class="details">
             <ul>
@@ -53,14 +53,7 @@ export default {
             },
         },
     },
-    mounted() {
-        ScrollTrigger.create({
-            trigger: "#orange",
-            start: "top top",
-            end: "bottom 150px",
-            pin: "#orange-content",
-        });
-    },
+    mounted() {},
 };
 </script>
 
@@ -78,7 +71,7 @@ export default {
     background-color: #02281c;
 }
 
-.title {
+.titleDetails {
     justify-self: end;
     align-self: start;
     grid-area: 1 / 1 / 2 / 5;

@@ -97,7 +97,7 @@ export default {
                 trigger: container,
                 start: "top top",
 
-                end: () => "+=200%",
+                end: () => "+=300%",
 
                 onUpdate: (self) =>
                     console.log("progress: " + self.progress.toFixed(3)),
@@ -185,7 +185,8 @@ h1 {
     height: 100vh;
     display: flex;
     flex-wrap: nowrap;
-    background-color: white;
+    background-color: #02281c;
+    align-items: flex-end;
 
     overflow: hidden;
     z-index: 500;
@@ -212,19 +213,19 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    aling-content: center;
-    justify-content: center;
+    align-content: center;
+    justify-content: end;
     overflow: hidden;
 }
 .panel {
     display: flex;
-    flex: 0 0 92%;
+    flex: 0 0 75%;
     flex-wrap: wrap;
     align-items: center;
     align-content: center;
     justify-content: center;
 
-    height: 100%;
+    height: 60%;
 
     padding-right: 20px;
 
@@ -261,6 +262,7 @@ h1 {
     letter-spacing: 0.05em;
     text-transform: uppercase;
 
-    color: #ffffff;
+    color: #f4ece1;
+    margin-top: -100ppx;
 }
 </style>

@@ -77,7 +77,7 @@ export default {
 }
 
 .smooth-content {
-    height: calc(800vh);
+    height: calc(900vh);
 }
 
 .navBar {
