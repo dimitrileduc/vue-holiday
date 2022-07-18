@@ -1,14 +1,21 @@
 <template>
     <div class="container">
-        <div class="containerInterne" :style="image"></div>
-        <h1 class="title">{{ dataProps.siteTitle }}</h1>
-
-        <MenuButton />
-        <BookButton class="button" />
-        <div class="borderTop"></div>
-        <div class="borderRight"></div>
-        <div class="borderBottom"></div>
-        <div class="borderLeft"></div>
+        <div class="containerInterne">
+            <div
+                class="pic"
+                :style="{
+                    backgroundImage:
+                        'url(' +
+                        require('@/assets/static/image/villaheader.jpg') +
+                        ')',
+                }"
+            ></div>
+            <div class="item1">{{ menuItem1 }}</div>
+            <div class="item2">{{ menuItem2 }}</div>
+            <div class="item3">{{ menuItem3 }}</div>
+            <div class="coord">{{ coord }}</div>
+            <div class="title">{{ title }}</div>
+        </div>
     </div>
 </template>
 
@@ -18,22 +25,18 @@ import ScrollTrigger from "gsap-trial/ScrollTrigger";
 import ScrollSmoother from "gsap-trial/ScrollSmoother";
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-import MenuButton from "@/components/ui/MenuButton.vue";
-import BookButton from "@/components/ui/BookButton.vue";
-
 export default {
     name: "HomeHeader",
-    components: {
-        MenuButton,
-        BookButton,
-    },
+    components: {},
 
     data() {
         return {
-            image: {
-                backgroundImage:
-                    "url(https://business-crunch.com/wp-content/uploads/2014/06/Eco-bali-villa-de-luxe_0.jpg)",
-            },
+            title: "villa boolean",
+            menuItem1: "rooms",
+            menuItem2: "location",
+            menuItem3: "reservation",
+            coord: "39° 19.288 - 16° 58.285",
+            urlImage: "@/assets/static/image/villaheader.jpg",
         };
     },
 
@@ -45,43 +48,7 @@ export default {
             },
         },
     },
-    mounted() {
-        let tl = gsap.timeline();
-        tl.to(".containerInterne", {
-            scale: 1,
-            duration: 4,
-            ease: "expo.out",
-        });
-
-        tl.to(".borderTop", {height: 20, duration: 2, ease: "expo.out"}, "-=4");
-        tl.to(
-            ".borderRight",
-            {width: 20, duration: 2, ease: "expo.out"},
-            "-=4",
-        );
-        tl.to(
-            ".borderBottom",
-            {marginTop: -20, duration: 2, ease: "expo.out"},
-            "-=4",
-        );
-        tl.to(".borderLeft", {width: 20, duration: 2, ease: "expo.out"}, "-=4");
-
-        ScrollTrigger.create({
-            trigger: ".container",
-            pin: ".containerInterne",
-            start: "top top",
-        });
-        ScrollTrigger.create({
-            trigger: ".container",
-            pin: ".button",
-            start: "top top",
-        });
-        ScrollTrigger.create({
-            trigger: ".container",
-            pin: ".title",
-            start: "top top",
-        });
-    },
+    mounted() {},
 };
 </script>
 
@@ -90,70 +57,85 @@ export default {
 .container {
     width: 100vw;
     height: 100vh;
-    overflow-x: hidden;
 }
 
 .containerInterne {
-    transform: scale(1.05);
-
     width: 100vw;
     height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 0.5fr 0.5fr;
+    grid-template-rows: 35% 65%;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    color: #02281c;
+    background-color: #f4ece1;
+    gap: 0px 20px;
+}
+
+.pic {
+    justify-self: stretch;
+    align-self: stretch;
+    grid-area: 2 / 1 / 3 / 5;
     background-size: cover;
 
-    position: fixed;
-}
-.borderTop {
-    background-color: white;
-    width: 100vw;
-    height: 0px;
-    position: absolute;
-    top: 0;
+    max-width: 1200px;
 }
 
-.borderRight {
-    background-color: white;
-    width: 0px;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-.borderBottom {
-    background-color: rgb(255, 255, 255);
-    width: 100vw;
-    height: 20px;
-    position: absolute;
-
-    top: 100vh;
-    margin-top: 0px;
-    left: 0;
+.item1 {
+    justify-self: start;
+    align-self: start;
+    grid-area: 1 / 2 / 2 / 3;
+    margin-top: 10px;
 }
 
-.borderLeft {
-    background-color: white;
-    width: 0;
-    height: 100vh;
-    position: absolute;
-    top: 0;
+.item2 {
+    justify-self: start;
+    align-self: start;
+    grid-area: 1 / 3 / 2 / 4;
+    margin-top: 10px;
+}
+
+.item3 {
+    justify-self: start;
+    align-self: start;
+    grid-area: 1 / 4 / 2 / 5;
+    margin-top: 10px;
+}
+
+.coord {
+    justify-self: start;
+    align-self: end;
+    grid-area: 1 / 1 / 2 / 2;
+    margin-left: 10px;
 }
 
 .title {
-    font-size: 96px;
-    color: white;
-    text-transform: uppercase;
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    position: absolute;
-
-    text-align: left;
-    margin-left: 60px;
-
-    top: calc(100vh - 146px);
+    justify-self: end;
+    align-self: start;
+    grid-area: 2 / 2 / 3 / 6;
+    font-size: 110px;
+    text-align: right;
+    margin-top: -85px;
+    margin-right: 20px;
 }
+
 @media only screen and (max-width: 600px) {
-    .title {
-        font-size: 48px;
-        width: 60vw;
+    .pic {
     }
 }
 </style>
+
+<!--
+<template>
+    <div class="container">
+        <div class="containerInterne" :style="image"></div>
+        <h1 class="title">{{ dataProps.siteTitle }}</h1>
+
+        <div class="borderTop"></div>
+        <div class="borderRight"></div>
+        <div class="borderBottom"></div>
+        <div class="borderLeft"></div>
+    </div>
+</template>
+
+-->

@@ -31,7 +31,7 @@ export default {
             console.log("closeMenu");
             let tl2 = gsap.timeline();
             tl2.to(".containerNav", {
-                left: "-100vw",
+                left: "-40vw",
                 duration: 1,
                 ease: "expo.out",
             });
@@ -66,8 +66,8 @@ export default {
     top: 0;
     z-index: 100;
     background-color: white;
-    width: 100vw;
+    width: 40vw;
     height: 100vh;
-    left: -100vw;
+    left: -40vw;
 }
 </style>

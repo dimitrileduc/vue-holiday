@@ -1,12 +1,5 @@
 <template>
     <div id="smooth-wrapper">
-        <NavBar
-            @wheel.prevent
-            @touchmove.prevent
-            @scroll.prevent
-            class="navBar"
-            :isNavVisible="isNavVisible"
-        />
         <div id="smooth-content" class="smooth-content">
             <router-view v-if="homeData" :data="homeData" />
             <FooterSection />
@@ -15,7 +8,6 @@
 </template>
 
 <script>
-import NavBar from "@/components/NavBar.vue";
 import HomeService from "@/services/HomeServices";
 
 import gsap from "gsap-trial";
@@ -25,9 +17,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 export default {
     name: "App",
-    components: {
-        NavBar,
-    },
+    components: {},
 
     data() {
         return {
@@ -62,7 +52,7 @@ export default {
     },
     mounted() {
         ScrollSmoother.create({
-            smooth: 1.5, // how long (in seconds) it takes to "catch up" to the native scroll position
+            smooth: 3, // how long (in seconds) it takes to "catch up" to the native scroll position
             effects: true, // looks for data-speed and data-lag attributes on elements
             smoothTouch: 0.1, // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
         });
@@ -78,8 +68,6 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
-    background-color: black;
 }
 
 * {

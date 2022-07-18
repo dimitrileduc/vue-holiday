@@ -1,7 +1,15 @@
 <template>
     <div class="home">
-        <HomeHeader v-if="data" v-bind:dataProps="headerParsed" />
-        <HomeDetails v-if="data" v-bind:dataProps="detailsParsed" />
+        <HomeHeader
+            class="homeHeader"
+            v-if="data"
+            v-bind:dataProps="headerParsed"
+        />
+        <HomeDetails
+            class="homeDetails"
+            v-if="data"
+            v-bind:dataProps="detailsParsed"
+        />
         <HomeSlideShow v-if="data" v-bind:dataProps="slideShowParsed" />
 
         <HomeDiscover v-if="data" v-bind:dataProps="discoverParsed" />
@@ -82,7 +90,6 @@ export default {
 </script>
 
 <style scoped>
-.home {
-    background-color: green;
+.homeHeader {
 }
 </style>
